@@ -14,6 +14,6 @@ React Component to lazy load all component you want and better features to suppo
 😀    easy to use  
 ⚡️ optimization performance  
 💥    tiny bundle(~6kb)  
-🌐    **componentEntryCallback** call before render component it is very useful for prevent loading until finish a task like http request  
+🌐    **componentEntryCallback** it is very useful for prevent loading until finish a task like http request  
 🅿️   support placeholder
 
