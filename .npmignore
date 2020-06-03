@@ -1,0 +1,6 @@
+examples/
+src/
+.babelrc
+.npmignore
+.idea/
+webpack.config.js
