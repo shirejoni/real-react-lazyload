@@ -29,7 +29,6 @@ export const findObserverElement = (observer, entry) => {
         const values = elements.values();
         let element;
         while(element = values.next().value) {
-            console.log("findObserverElement", element, entry);
             if(element.target.current == entry.target) {
                 return element;
             }
@@ -39,7 +38,6 @@ export const findObserverElement = (observer, entry) => {
 }
 
 export const unobserveElement = (element, target, disconnect = true) => {
-    console.log("Test", element, target);
     if(observerElementsMap.has(element.observer)) {
         const targets = observerElementsMap.get(element.observer);
         if(targets.delete(element)) {

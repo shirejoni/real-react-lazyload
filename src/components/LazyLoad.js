@@ -5,13 +5,11 @@ import {isBot, isIntersectionObserverAvailable} from "./init_variable";
 const RealLazyLoad = ({children,height, placeholder, visibleByDefault = false, root, rootMargin, forceVisible = false, componentEntryCallback, once = true}) => {
     let [visible, setVisible] = useState((visibleByDefault === true || forceVisible == true) ? true : false);
     let [isForced, setForce] = useState(forceVisible || false);
-    console.log(isBot, isIntersectionObserverAvailable);
     const updateComponent = () => {
         if(visible === false) {
             setVisible(true);
         }
         if(visible === true && once !== false) {
-            console.log("going to Unobserve");
             cleanUpObservers(lazyLoadInfo.current);
         }
     }
@@ -22,7 +20,6 @@ const RealLazyLoad = ({children,height, placeholder, visibleByDefault = false, r
         target: undefined,
         targets: [],
         callback: (entry) => {
-            console.log(`callback called! Visible is: ${visible}`);
             if(entry.isIntersecting || entry.intersectionRatio > 0) {
                 if(componentEntryCallback != undefined) {
                     if(typeof componentEntryCallback === "function" && componentEntryCallback()) {
@@ -39,7 +36,6 @@ const RealLazyLoad = ({children,height, placeholder, visibleByDefault = false, r
                 setVisible(true);
             }
             setForce(true);
-            console.log("going to Unobserve with forceVisibleCall");
             cleanUpObservers(lazyLoadInfo.current);
         },
     });
@@ -47,7 +43,6 @@ const RealLazyLoad = ({children,height, placeholder, visibleByDefault = false, r
 
     // Force with props: force render component and cleanup observers
     if(forceVisible === true && isForced === false) {
-        console.log("going to Unobserve with forceVisible Props");
         cleanUpObservers(lazyLoadInfo.current);
     }
 
@@ -67,9 +62,7 @@ const RealLazyLoad = ({children,height, placeholder, visibleByDefault = false, r
             options['rootMargin'] = rootMargin;
         }
         lazyLoadInfo.current.observer = createObserver(options);
-        console.log("RealLazyLoad Component start observe! ", lazyLoadInfo.current.observer, targetElement.current);
         return () => {
-            console.log("Going to Unobserve when component unmount");
             cleanUpObservers(lazyLoadInfo.current);
         }
     }, []);
@@ -86,7 +79,6 @@ const RealLazyLoad = ({children,height, placeholder, visibleByDefault = false, r
             unobserveElement(lazyLoadInfo.current, lazyLoadInfo.current.target.current, false);
         }
     }, [lazyLoadInfo.current.target]);
-    console.log(`Component Renders with state[visible] = ${visible}`);
 
     let style = {
         width: "100%",
