@@ -83,7 +83,7 @@ const RealLazyLoad = ({children,height, placeholder, visibleByDefault = false, r
             }
         }
         return () => {
-            unobserveElement(lazyLoadInfo.current, lazyLoadInfo.current.target, false);
+            unobserveElement(lazyLoadInfo.current, lazyLoadInfo.current.target.current, false);
         }
     }, [lazyLoadInfo.current.target]);
     console.log(`Component Renders with state[visible] = ${visible}`);

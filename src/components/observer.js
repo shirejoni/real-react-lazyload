@@ -39,10 +39,12 @@ export const findObserverElement = (observer, entry) => {
 }
 
 export const unobserveElement = (element, target, disconnect = true) => {
+    console.log("Test", element, target);
     if(observerElementsMap.has(element.observer)) {
         const targets = observerElementsMap.get(element.observer);
         if(targets.delete(element)) {
             if (targets.size > 0) {
+
                 element.observer.unobserve(target);
             } else if(disconnect === true) {
                 element.observer.disconnect();
@@ -75,7 +77,7 @@ export const getPooled = (options = {}) => {
 
 export function cleanUpObservers(elements) {
     elements.targets.filter((t) => {
-        unobserveElement(elements, t);
+        unobserveElement(elements, t.current);
         return false;
     });
 }
