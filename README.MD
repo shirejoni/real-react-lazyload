@@ -58,4 +58,4 @@ export default App;
 ## LICENCE
 **MIT**
 ## Developer
-@shirejoni
+[@shirejoni](https://github.com/shirejoni)
