@@ -43,6 +43,7 @@
     "@testing-library/react": "^10.0.5",
     "babel-jest": "^26.0.1",
     "babel-loader": "^8.1.0",
+    "compression-webpack-plugin": "^4.0.0",
     "css-loader": "^3.5.3",
     "jest": "^26.0.1",
     "style-loader": "^1.2.1",
