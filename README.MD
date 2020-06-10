@@ -3,12 +3,7 @@ React Component to lazy load all component you want and better features to suppo
 <div dir="rtl"  style="direction: rtl;text-align: right;">
     یک کتابخانه React برای Lazy Loading کامپوننت هایتان استفاده کنید 
 </div>
-<div dir="rtl"  style="direction: rtl;text-align: right;">
 
-## چرا
-در حال توسعه پروژه ای برای React نیاز بود کامپوننت من به محض پدیدار شدن در Viewport ریکوئستی به سمت API بدهد و نتیجه را رندر کند ولی کتابخانه های فعلی از چنین امکانی پشتیبانی نمی کردند و به محض ورود به Viewport کامپوننت را رند میکردند به همین دلیل مجبور بودم یا از استقلال کامپوننت جلوگیری کنم و مدیریت بخش ها را به کاپوننت بالاتر بدهم که باعث تکرار بیهوده کد در چندین قسمت می شد و راه حل دیگه استفاده از کتابخانه ای که قبل از رندر شدن از من درخواست کند و درصورت اجازه من رندر رو انجام دهد
-
-</div>
 
 ## Feature
 😀    easy to use  
@@ -16,6 +11,7 @@ React Component to lazy load all component you want and better features to suppo
 💥    tiny bundle(~6kb)  
 🌐    **componentEntryCallback** it is very useful for prevent loading until finish a task like http request  
 🅿️   support placeholder
+
 
 ## Installation
 ```bash
@@ -49,6 +45,39 @@ export default App;
 
 ```
 
+
+
+## Pay Attention
+if you use Functional/Class Component in `placeholder` | `children` you should use forwardRef.
+because React discourage to use findDOMNode we use Ref instead of it. so you should use DOM in `children` | `placeholder` props or use Functional/Class Component with forwardRef see example.
+use ref from forwardRef in DOM Element.
+## Example for Functional Component
+```javascript
+
+import React from "react";
+import {ImageRealLazyLoad, RealLazyLoad} from 'real-react-lazyload';
+import Loading from "./Loading";
+
+// Functional Component with Forwarded Ref
+const Loading = forwardRef((props, ref) => {
+            // you should use ref in dom element RealLazyLoad can access it for lazyloading
+    return  (<div ref={ref} className="loading">
+                Loading...
+            </div>)
+    
+});
+
+
+const App = () => {
+    return (
+        <div className="container">
+            {/* it is better to use ImageRealLazyLoad for loading Image it dose not have children prop */}
+            <ImageRealLazyLoad placeholder={<Loading/>} src="http://cdn64.akairan.com/files/images/20163/2016329202544730340a.jpg"/>
+        </div>
+    );
+}
+
+```
 ## Props
 | Name | Type | Default | required  | Description |
 |:---|:---|:---|:---|:---|
@@ -58,6 +87,13 @@ export default App;
 | rootMargin | `string` | '0px' | false | Margin around RealLazyLoad component for lazyloading |
 | forceVisible | `boolean` | false | false | it force RealLazyLoad render the component in any state it is |
 | componentEntryCallback | `function` | undefined | false |  it will call when component get enter to viewport it will render component if it return true and dose not render component if it return false. __this callback won't work if forceVisible is set__ | 
+
+<div dir="rtl"  style="direction: rtl;text-align: right;">
+
+## چرا
+در حال توسعه پروژه ای برای React نیاز بود کامپوننت من به محض پدیدار شدن در Viewport ریکوئستی به سمت API بدهد و نتیجه را رندر کند ولی کتابخانه های فعلی از چنین امکانی پشتیبانی نمی کردند و به محض ورود به Viewport کامپوننت را رند میکردند به همین دلیل مجبور بودم یا از استقلال کامپوننت جلوگیری کنم و مدیریت بخش ها را به کاپوننت بالاتر بدهم که باعث تکرار بیهوده کد در چندین قسمت می شد و راه حل دیگه استفاده از کتابخانه ای که قبل از رندر شدن از من درخواست کند و درصورت اجازه من رندر رو انجام دهد
+
+</div>
 
 ## LICENCE
 **MIT**
