@@ -4,14 +4,12 @@ React Component to lazy load all component you want and better features to suppo
     یک کتابخانه React برای Lazy Loading کامپوننت هایتان استفاده کنید 
 </div>
 
-
 ## Feature
 😀    easy to use  
 ⚡️ optimization performance  
 💥    tiny bundle(~6kb)  
 🌐    **componentEntryCallback** it is very useful for prevent loading until finish a task like http request  
 🅿️   support placeholder
-
 
 ## Installation
 ```bash
