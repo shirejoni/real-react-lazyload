@@ -9,8 +9,8 @@ React Component to lazy load all component you want and better features to suppo
 ⚡️ optimization performance  
 💥    tiny bundle(~6kb)  
 🌐    **componentEntryCallback** it is very useful for prevent loading until finish a task like http request  
-🅿️   support placeholder
-
+🅿️   support placeholder  
+🖼️ Special Componnet for image lazy loading
 ## Installation
 ```bash
 # NPM
@@ -20,7 +20,7 @@ $ yarn add real-react-lazyload
 ```
 
 ## RealLazyLoad usage
-it's simple just import it.
+It's simple just import it.
 ```javascript
 import React from 'react';
 import {RealLazyLoad} from 'real-react-lazyload';
@@ -43,11 +43,25 @@ export default App;
 
 ```
 
+For images, it is better use ImageRealLazyLoad component:
 
+```javascript
+import React from "react";
+import {ImageRealLazyLoad} from 'real-react-lazyload';
+const App = () => {
+    return (
+        <div className="container">
+            <ImageRealLazyLoad src="image src" alt="image alt" className="image class"/>
+        </div>           
+    );
+}
+
+export default App;
+```
 
 ## Pay Attention
-if you use Functional/Class Component in `placeholder` | `children` you should use forwardRef.
-because React discourage to use findDOMNode we use Ref instead of it. so you should use DOM in `children` | `placeholder` props or use Functional/Class Component with forwardRef see example.
+if you use **Functional/Class** Component in `placeholder` | `children` you should use [forwardRef](https://reactjs.org/docs/forwarding-refs.html).
+because React discourage to use findDOMNode we use Ref instead of it. so you should use DOM in `children` | `placeholder` props or use **Functional/Class Component with forwardRef** see [examples](https://github.com/shirejoni/real-react-lazyload/#example-for-functional-component).
 use ref from forwardRef in DOM Element.
 ## Example for Functional Component
 ```javascript
@@ -75,6 +89,77 @@ const App = () => {
     );
 }
 
+```
+## Example for Class Component Function
+you should wrap your component with `withLazyLoadRef`
+```javascript
+// Loading.js
+import React from "react";
+import {withLazyLoadRef} from 'real-react-lazyload'
+
+class Loading extends React.Component {
+    render() {
+        return (
+            <div ref={this.props.lazyLoadRef} className="loading">
+                Loading
+            </div>
+        );
+    }
+}
+
+export default withLazyLoadRef(Loading);
+
+// Post.js
+import React from "react";
+import {withLazyLoadRef} from 'real-react-lazyload'
+
+class Post extends React.Component {
+    render() {
+        return (
+            <div ref={this.props.lazyLoadRef} className="post">
+                Lazy Loaded Post
+            </div>
+        );
+    }
+}
+export default withLazyLoadRef(Post);
+
+// App.js
+import React from "react";
+import {RealLazyLoad} from 'real-react-lazyload';
+import Loading from './Loading';
+import Post from './Post';
+
+const App = () => {
+    return (
+        <div className="App">
+                <RealLazyLoad placeholder={<Loading/>}>
+                    <Post/>
+                </RealLazyLoad>
+        </div>
+    );
+}
+
+
+```
+## Example for Dom Element
+```javascript
+import React from "react";
+import {RealLazyLoad} from 'real-react-lazyload';
+import Loading from './Loading';
+import Post from './Post';
+
+const App = () => {
+    return (
+        <div className="App">
+            <RealLazyLoad placeholder={<div> Placeholder </div>}>
+                <div className="post">
+                    Lazy Loaded Post
+                </div>
+            </RealLazyLoad>
+        </div>
+    );
+}
 ```
 ## Props
 | Name | Type | Default | required  | Description |
