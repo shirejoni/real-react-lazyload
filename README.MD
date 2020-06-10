@@ -60,8 +60,8 @@ export default App;
 ```
 
 ## Pay Attention
-if you use **Functional/Class** Component in `placeholder` | `children` you should use [forwardRef](https://reactjs.org/docs/forwarding-refs.html).
-because React discourage to use findDOMNode we use Ref instead of it. so you should use DOM in `children` | `placeholder` props or use **Functional/Class Component with forwardRef** see [examples](https://github.com/shirejoni/real-react-lazyload/#example-for-functional-component).
+if you use **Functional/Class** Component in `placeholder` | `children` you should use [forwardRef](https://reactjs.org/docs/forwarding-refs.html).  
+because React discourage to use findDOMNode we use Ref instead of it. so you should use DOM in `children` | `placeholder` props or use **Functional/Class** Component with forwardRef see [examples](https://github.com/shirejoni/real-react-lazyload/#example-for-functional-component).   
 use ref from forwardRef in DOM Element.
 ## Example for Functional Component
 ```javascript
