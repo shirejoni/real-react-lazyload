@@ -63,7 +63,9 @@ const RealLazyLoad = ({children,height, placeholder, visibleByDefault = false, r
         }
         lazyLoadInfo.current.observer = createObserver(options);
         return () => {
-            cleanUpObservers(lazyLoadInfo.current);
+            if(lazyLoadInfo && lazyLoadInfo.current) {
+                cleanUpObservers(lazyLoadInfo.current);
+            }
         }
     }, []);
 
@@ -76,7 +78,9 @@ const RealLazyLoad = ({children,height, placeholder, visibleByDefault = false, r
             }
         }
         return () => {
-            unobserveElement(lazyLoadInfo.current, lazyLoadInfo.current.target.current, false);
+            if(lazyLoadInfo && lazyLoadInfo.current && lazyLoadInfo.current.target) {
+                unobserveElement(lazyLoadInfo.current, lazyLoadInfo.current.target.current, false);
+            }
         }
     }, [lazyLoadInfo.current.target]);
 
@@ -86,7 +90,6 @@ const RealLazyLoad = ({children,height, placeholder, visibleByDefault = false, r
     if(height) {
         style['height'] = height + "px";
     }
-
     return visible || forceVisible === true ? React.cloneElement(React.Children.only(children), {
         ref: targetElement,
     }) : placeholder ? React.cloneElement(React.Children.only(placeholder), {
