@@ -2,6 +2,11 @@
 React Component to lazy load all component you want and better features to support for http request  
 <div dir="rtl"  style="direction: rtl;text-align: right;">
     یک کتابخانه React برای Lazy Loading کامپوننت هایتان استفاده کنید 
+    
+    
+    
+    
+[see examlpes on code sandbox](https://codesandbox.io/s/real-react-lazyload-examples-77p54)
 </div>
 
 ## Feature
