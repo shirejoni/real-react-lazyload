@@ -1,6 +1,6 @@
 {
   "name": "real-react-lazyload",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "private": false,
   "description": "React Lazy Load component compatible with http request",
   "main": "dist/index.js",
